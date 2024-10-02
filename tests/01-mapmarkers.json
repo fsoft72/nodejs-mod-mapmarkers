@@ -1,0 +1,110 @@
+{
+    "actions": [
+        {
+            "method": "POST",
+            "url": "/api/mapmarkers/admin/add",
+            "params": {
+                "title": "Piazza del Duomo",
+                "description": "Piazza del Duomo",
+                "position": {
+                    "lat": 43.722838,
+                    "lng": 10.396574
+                },
+                "address": "Monument",
+                "phone": "050 560547"
+            },
+            "tests": [
+                {
+                    "field": "marker.title",
+                    "value": "Piazza del Duomo"
+                },
+                {
+                    "field": "marker.id",
+                    "mode": "exists"
+                }
+            ],
+            "fields": [
+                [
+                    "marker.id",
+                    "id_piazza_duomo"
+                ]
+            ]
+        },
+        {
+            "method": "POST",
+            "url": "/api/mapmarkers/admin/add",
+            "params": {
+                "title": "Piazza dei Miracoli",
+                "description": "Piazza dei Miracoli",
+                "position": {
+                    "lat": 43.722838,
+                    "lng": 10.396574
+                },
+                "address": "Monument",
+                "phone": "050 560547"
+            },
+            "tests": [
+                {
+                    "field": "marker.title",
+                    "value": "Piazza dei Miracoli"
+                },
+                {
+                    "field": "marker.id",
+                    "mode": "exists"
+                }
+            ],
+            "fields": [
+                [
+                    "marker.id",
+                    "id_piazza_miracoli"
+                ]
+            ]
+        },
+        {
+            "method": "PATCH",
+            "url": "/api/mapmarkers/admin/edit",
+            "params": {
+                "id": "%(id_piazza_miracoli)s",
+                "title": "Piazza dei Miracoli MOD"
+            },
+            "tests": [
+                {
+                    "field": "marker.title",
+                    "value": "Piazza dei Miracoli MOD"
+                }
+            ]
+        },
+        {
+            "method": "GET",
+            "url": "/api/mapmarkers/list",
+            "tests": [
+                {
+                    "field": "marker",
+                    "mode": "len",
+                    "value": 2
+                }
+            ]
+        },
+        {
+            "method": "GET",
+            "url": "/api/mapmarkers/get",
+            "params": {
+                "id": "%(id_piazza_miracoli)s"
+            },
+            "tests": [
+                {
+                    "field": "marker.title",
+                    "value": "Piazza dei Miracoli MOD"
+                }
+            ]
+        },
+        {
+            "method": "DELETE",
+            "url": "/api/mapmarkers/admin/del",
+            "params": {
+                "id": "%(id_piazza_duomo)s"
+            },
+            "status": 200
+        }
+    ]
+}
