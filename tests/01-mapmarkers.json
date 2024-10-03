@@ -11,7 +11,8 @@
                     "lng": 10.396574
                 },
                 "address": "Monument",
-                "phone": "050 560547"
+                "phone": "050 560547",
+                "enabled": true
             },
             "tests": [
                 {
@@ -41,7 +42,8 @@
                     "lng": 10.396574
                 },
                 "address": "Monument",
-                "phone": "050 560547"
+                "phone": "050 560547",
+                "enabled": false
             },
             "tests": [
                 {
@@ -77,6 +79,17 @@
         {
             "method": "GET",
             "url": "/api/mapmarkers/list",
+            "tests": [
+                {
+                    "field": "marker",
+                    "mode": "len",
+                    "value": 1
+                }
+            ]
+        },
+        {
+            "method": "GET",
+            "url": "/api/mapmarkers/admin/list",
             "tests": [
                 {
                     "field": "marker",
