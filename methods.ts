@@ -79,7 +79,7 @@ export const delete_mapmarkers_admin_del = ( req: ILRequest, id: string, cback: 
 };
 // }}}
 
-// {{{ patch_mapmarkers_admin_edit ( req: ILRequest, id: string, title?: string, position?: any, full_address?: MarkerGoogleAddress[], description?: string, address?: string, phone?: string, enabled?: boolean, cback: LCBack = null ): Promise<Marker>
+// {{{ patch_mapmarkers_admin_edit ( req: ILRequest, id: string, title?: string, position?: any, full_address?: MarkerGoogleAddress[], description?: string, address?: string, phone?: string, email?: string, website?: string, enabled?: boolean, cback: LCBack = null ): Promise<Marker>
 /**
  *
  * @param id - Marker id [req]
@@ -89,12 +89,14 @@ export const delete_mapmarkers_admin_del = ( req: ILRequest, id: string, cback: 
  * @param description -  [opt]
  * @param address -  [opt]
  * @param phone -  [opt]
+ * @param email - Marker email [opt]
+ * @param website - Marker website url [opt]
  * @param enabled -  [opt]
  *
  * @return marker: Marker
  *
  */
-export const patch_mapmarkers_admin_edit = ( req: ILRequest, id: string, title?: string, position?: any, full_address?: MarkerGoogleAddress[], description?: string, address?: string, phone?: string, enabled?: boolean, cback: LCback = null ): Promise<Marker> => {
+export const patch_mapmarkers_admin_edit = ( req: ILRequest, id: string, title?: string, position?: any, full_address?: MarkerGoogleAddress[], description?: string, address?: string, phone?: string, email?: string, website?: string, enabled?: boolean, cback: LCback = null ): Promise<Marker> => {
 	return new Promise( async ( resolve, reject ) => {
 		/*=== f2c_start patch_mapmarkers_admin_edit ===*/
 		const domain = await system_domain_get_by_session( req );
@@ -104,7 +106,7 @@ export const patch_mapmarkers_admin_edit = ( req: ILRequest, id: string, title?:
 		if ( !marker )
 			return cback ? cback( err, null ) : reject( err );
 
-		marker = { ...marker, ...keys_valid( { title, position, full_address, description, address, phone, enabled } ) };
+		marker = { ...marker, ...keys_valid( { title, position, full_address, description, address, phone, email, website, enabled } ) };
 		marker = await adb_record_add( req.db, COLL_MAP_MARKERS_RECORDS, marker, MarkerKeys );
 
 		return cback ? cback( null, marker ) : resolve( marker );
@@ -133,7 +135,7 @@ export const get_mapmarkers_list = ( req: ILRequest, cback: LCback = null ): Pro
 };
 // }}}
 
-// {{{ post_mapmarkers_admin_add ( req: ILRequest, title: string, position: any, full_address?: MarkerGoogleAddress[], description?: string, address?: string, phone?: string, enabled?: boolean, cback: LCBack = null ): Promise<Marker>
+// {{{ post_mapmarkers_admin_add ( req: ILRequest, title: string, position: any, full_address?: MarkerGoogleAddress[], description?: string, address?: string, phone?: string, email?: string, website?: string, enabled?: boolean, cback: LCBack = null ): Promise<Marker>
 /**
  *
  * @param title - Marker title [req]
@@ -142,12 +144,14 @@ export const get_mapmarkers_list = ( req: ILRequest, cback: LCback = null ): Pro
  * @param description - Marker description [opt]
  * @param address - Marker address [opt]
  * @param phone - Marker phone [opt]
+ * @param email - Marker email [opt]
+ * @param website - Marker website [opt]
  * @param enabled -  [opt]
  *
  * @return marker: Marker
  *
  */
-export const post_mapmarkers_admin_add = ( req: ILRequest, title: string, position: any, full_address?: MarkerGoogleAddress[], description?: string, address?: string, phone?: string, enabled?: boolean, cback: LCback = null ): Promise<Marker> => {
+export const post_mapmarkers_admin_add = ( req: ILRequest, title: string, position: any, full_address?: MarkerGoogleAddress[], description?: string, address?: string, phone?: string, email?: string, website?: string, enabled?: boolean, cback: LCback = null ): Promise<Marker> => {
 	return new Promise( async ( resolve, reject ) => {
 		/*=== f2c_start post_mapmarkers_admin_add ===*/
 		const domain = await system_domain_get_by_session( req );
@@ -162,6 +166,8 @@ export const post_mapmarkers_admin_add = ( req: ILRequest, title: string, positi
 			description,
 			address,
 			phone,
+			email,
+			website,
 			enabled: enabled || false,
 		};
 

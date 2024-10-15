@@ -63,7 +63,7 @@ export const init = ( liwe: ILiWE ) => {
 	} );
 
 	app.patch ( '/api/mapmarkers/admin/edit', ( req: ILRequest, res: ILResponse ) => {
-		const { id, title, position, full_address, description, address, phone, enabled, ___errors } = typed_dict( req.body, [
+		const { id, title, position, full_address, description, address, phone, email, website, enabled, ___errors } = typed_dict( req.body, [
 			{ name: "id", type: "string", required: true },
 			{ name: "title", type: "string" },
 			{ name: "position", type: "any" },
@@ -71,12 +71,14 @@ export const init = ( liwe: ILiWE ) => {
 			{ name: "description", type: "string" },
 			{ name: "address", type: "string" },
 			{ name: "phone", type: "string" },
+			{ name: "email", type: "string" },
+			{ name: "website", type: "string" },
 			{ name: "enabled", type: "boolean" }
 		] );
 
 		if ( ___errors.length ) return send_error ( res, { message: `Parameters error: ${___errors.join ( ', ' )}` } );
 
-		patch_mapmarkers_admin_edit ( req, id, title, position, full_address, description, address, phone, enabled, ( err: ILError, marker: Marker ) => {
+		patch_mapmarkers_admin_edit ( req, id, title, position, full_address, description, address, phone, email, website, enabled, ( err: ILError, marker: Marker ) => {
 			if ( err ) return send_error( res, err );
 
 			send_ok( res, { marker } );
@@ -94,19 +96,21 @@ export const init = ( liwe: ILiWE ) => {
 	} );
 
 	app.post ( '/api/mapmarkers/admin/add', ( req: ILRequest, res: ILResponse ) => {
-		const { title, position, full_address, description, address, phone, enabled, ___errors } = typed_dict( req.body, [
+		const { title, position, full_address, description, address, phone, email, website, enabled, ___errors } = typed_dict( req.body, [
 			{ name: "title", type: "string", required: true },
 			{ name: "position", type: "any", required: true },
 			{ name: "full_address", type: "MarkerGoogleAddress[]" },
 			{ name: "description", type: "string" },
 			{ name: "address", type: "string" },
 			{ name: "phone", type: "string" },
+			{ name: "email", type: "string" },
+			{ name: "website", type: "string" },
 			{ name: "enabled", type: "boolean" }
 		] );
 
 		if ( ___errors.length ) return send_error ( res, { message: `Parameters error: ${___errors.join ( ', ' )}` } );
 
-		post_mapmarkers_admin_add ( req, title, position, full_address, description, address, phone, enabled, ( err: ILError, marker: Marker ) => {
+		post_mapmarkers_admin_add ( req, title, position, full_address, description, address, phone, email, website, enabled, ( err: ILError, marker: Marker ) => {
 			if ( err ) return send_error( res, err );
 
 			send_ok( res, { marker } );

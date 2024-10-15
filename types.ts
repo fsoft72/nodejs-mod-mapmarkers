@@ -13,6 +13,10 @@ export interface MarkerRecord {
 	description?: string;
 	address?: string;
 	phone?: string;
+	/** Marker email */
+	email?: string;
+	/** Marker website url */
+	website?: string;
 	enabled?: boolean;
 }
 
@@ -24,6 +28,8 @@ export const MarkerRecordKeys = {
 	'description': { type: 'string', priv: false },
 	'address': { type: 'string', priv: false },
 	'phone': { type: 'string', priv: false },
+	'email': { type: 'string', priv: false },
+	'website': { type: 'string', priv: false },
 	'enabled': { type: 'boolean', priv: false },
 };
 
@@ -42,6 +48,10 @@ export interface Marker {
 	address?: string;
 	/** Marker phone */
 	phone?: string;
+	/** Marker email */
+	email?: string;
+	/** Marker website url */
+	website?: string;
 	enabled?: boolean;
 }
 
@@ -53,6 +63,8 @@ export const MarkerKeys = {
 	'description': { type: 'string', priv: false },
 	'address': { type: 'string', priv: false },
 	'phone': { type: 'string', priv: false },
+	'email': { type: 'string', priv: false },
+	'website': { type: 'string', priv: false },
 	'enabled': { type: 'boolean', priv: false },
 };
 
