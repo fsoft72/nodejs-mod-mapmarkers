@@ -42,6 +42,7 @@ export const init = ( liwe: ILiWE ) => {
 		if ( ___errors.length ) return send_error ( res, { message: `Parameters error: ${___errors.join ( ', ' )}` } );
 
 		get_mapmarkers_get ( req, id, ( err: ILError, marker: Marker ) => {
+			if ( err?.quiet ) return;
 			if ( err ) return send_error( res, err );
 
 			send_ok( res, { marker } );
@@ -56,6 +57,7 @@ export const init = ( liwe: ILiWE ) => {
 		if ( ___errors.length ) return send_error ( res, { message: `Parameters error: ${___errors.join ( ', ' )}` } );
 
 		delete_mapmarkers_admin_del ( req, id, ( err: ILError, ok: boolean ) => {
+			if ( err?.quiet ) return;
 			if ( err ) return send_error( res, err );
 
 			send_ok( res, { ok } );
@@ -79,6 +81,7 @@ export const init = ( liwe: ILiWE ) => {
 		if ( ___errors.length ) return send_error ( res, { message: `Parameters error: ${___errors.join ( ', ' )}` } );
 
 		patch_mapmarkers_admin_edit ( req, id, title, position, full_address, description, address, phone, email, website, enabled, ( err: ILError, marker: Marker ) => {
+			if ( err?.quiet ) return;
 			if ( err ) return send_error( res, err );
 
 			send_ok( res, { marker } );
@@ -89,6 +92,7 @@ export const init = ( liwe: ILiWE ) => {
 		
 
 		get_mapmarkers_list ( req, ( err: ILError, marker: Marker ) => {
+			if ( err?.quiet ) return;
 			if ( err ) return send_error( res, err );
 
 			send_ok( res, { marker } );
@@ -111,6 +115,7 @@ export const init = ( liwe: ILiWE ) => {
 		if ( ___errors.length ) return send_error ( res, { message: `Parameters error: ${___errors.join ( ', ' )}` } );
 
 		post_mapmarkers_admin_add ( req, title, position, full_address, description, address, phone, email, website, enabled, ( err: ILError, marker: Marker ) => {
+			if ( err?.quiet ) return;
 			if ( err ) return send_error( res, err );
 
 			send_ok( res, { marker } );
@@ -121,6 +126,7 @@ export const init = ( liwe: ILiWE ) => {
 		
 
 		get_mapmarkers_admin_list ( req, ( err: ILError, marker: Marker ) => {
+			if ( err?.quiet ) return;
 			if ( err ) return send_error( res, err );
 
 			send_ok( res, { marker } );

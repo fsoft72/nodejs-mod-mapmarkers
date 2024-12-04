@@ -53,6 +53,8 @@ export interface Marker {
 	/** Marker website url */
 	website?: string;
 	enabled?: boolean;
+	/** additional data */
+	extra?: any;
 }
 
 export const MarkerKeys = {
@@ -66,6 +68,7 @@ export const MarkerKeys = {
 	'email': { type: 'string', priv: false },
 	'website': { type: 'string', priv: false },
 	'enabled': { type: 'boolean', priv: false },
+	'extra': { type: 'any', priv: false },
 };
 
 /** MarkerPosition */
