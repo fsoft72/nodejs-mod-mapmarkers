@@ -40,6 +40,8 @@ export interface Marker {
 	title: string;
 	/** Marker position {lat, lng} */
 	position: any;
+	/** Category ID */
+	category?: string;
 	/** Marker full google data */
 	full_address?: any[];
 	/** Marker description */
@@ -61,6 +63,7 @@ export const MarkerKeys = {
 	'id': { type: 'string', priv: false },
 	'title': { type: 'string', priv: false },
 	'position': { type: 'any', priv: false },
+	'category': { type: 'string', priv: false },
 	'full_address': { type: 'any[]', priv: false },
 	'description': { type: 'string', priv: false },
 	'address': { type: 'string', priv: false },
